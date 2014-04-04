@@ -1,0 +1,20 @@
+<head>
+  <title>Blaze JEditable Problem Demo</title>
+</head>
+
+<body>
+  {{> alist}}
+</body>
+
+<template name="alist">
+ <div>
+  {{#each dpoint}}
+    {{> listitem}}
+  {{/each}}
+ </div>
+</template>
+<template name="listitem">
+  <div>
+   <span id="{{_id}}" class="editable">{{price}}</span>
+  </div>
+</template>
