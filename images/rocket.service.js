@@ -136,7 +136,7 @@ var varsAreSpecified = function()
   for(var x =0; x < requiredVars.length; x++)
   {
       var required = requiredVars[x];
-      a
+      
       if(process.env[required] == null)
       {
           error('Error. '+ required +' was not defined!');
