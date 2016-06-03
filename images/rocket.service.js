@@ -43,31 +43,8 @@ var error = function(message){
 };
 
 svc.on('install',function(){
-  if(process.env["MONGO_OPLOG_URL"] == null)
-  {
-
-  }
-  else if(process.env["MONGO_OPLOG_URL"] == null)
-  {
-
-  }
-  else if(process.env["MONGO_OPLOG_URL"] == null)
-  {
-
-  }
-  else if(process.env["MONGO_OPLOG_URL"] == null)
-  {
-
-  }
-  else if(process.env["MONGO_OPLOG_URL"] == null)
-  {
-
-  }
-  else
-  {
-      log('Install complete!');
-      svc.start();
-  }
+    log('Install complete!');
+    svc.start();
 });
 
 svc.on('uninstall',function(){
@@ -127,11 +104,16 @@ var doCommand = function()
     }
 }
 
-var varsAreSpecified = function()
+var varsAreSpecified = function(command)
 {
   var result = true;
 
-  var requiredVars = [ 'PORT', 'ROOT_URL', 'MONGO_URL', 'MONGO_OPLOG_URL', 'SCRIPT_PATH' ];
+  var requiredVars = [ 'SCRIPT_PATH' ];
+  
+  if(command == 'install')
+  {
+	requiredVars = [ 'PORT', 'ROOT_URL', 'MONGO_URL', 'MONGO_OPLOG_URL', 'SCRIPT_PATH' ];
+  }
 
   for(var x =0; x < requiredVars.length; x++)
   {
@@ -150,7 +132,7 @@ var varsAreSpecified = function()
   return result;
 }
 
-if(command == 'stop' || command == 'uninstall' || varsAreSpecified())
+if(varsAreSpecified(command))
 {
     doCommand();
 }
